@@ -1,4 +1,6 @@
-const d3 = require('d3');
+const d3 = require('d3'); 
+import { Vector }  from "sylvester-es6";
+
 /*
  Copyright (c) 2012, Kai Chang
  All rights reserved.
@@ -512,7 +514,8 @@ d3.parcoords = function(config) {
         }
     };
     function compute_cluster_centroids(d) {
-
+        console.log(d)
+        console.log(__.dimensions)
         var clusterCentroids = d3.map();
         var clusterCounts = d3.map();
         // determine clusterCounts
@@ -555,7 +558,7 @@ d3.parcoords = function(config) {
             // centroids on 'real' axes
             var x = position(p[i]);
             var y = __.dimensions[p[i]].yscale(row[p[i]]);
-            centroids.push($V([x, y]));
+            centroids.push(new Vector([x, y]));
 
             // centroids on 'virtual' axes
             if (i < cols - 1) {
@@ -567,7 +570,7 @@ d3.parcoords = function(config) {
                     var centroid = 0.5 * (leftCentroid + rightCentroid);
                     cy = centroid + (1 - __.bundlingStrength) * (cy - centroid);
                 }
-                centroids.push($V([cx, cy]));
+                centroids.push(new Vector([cx, cy]));
             }
         }
 
@@ -597,7 +600,7 @@ d3.parcoords = function(config) {
         var cps = [];
 
         cps.push(centroids[0]);
-        cps.push($V([centroids[0].e(1) + a*2*(centroids[1].e(1)-centroids[0].e(1)), centroids[0].e(2)]));
+        cps.push(new Vector([centroids[0].e(1) + a*2*(centroids[1].e(1)-centroids[0].e(1)), centroids[0].e(2)]));
         for (var col = 1; col < cols - 1; ++col) {
             var mid = centroids[col];
             var left = centroids[col - 1];
@@ -608,7 +611,7 @@ d3.parcoords = function(config) {
             cps.push(mid);
             cps.push(mid.subtract(diff.x(a)));
         }
-        cps.push($V([centroids[cols-1].e(1) + a*2*(centroids[cols-2].e(1)-centroids[cols-1].e(1)), centroids[cols-1].e(2)]));
+        cps.push(new Vector([centroids[cols-1].e(1) + a*2*(centroids[cols-2].e(1)-centroids[cols-1].e(1)), centroids[cols-1].e(2)]));
         cps.push(centroids[cols - 1]);
 
         return cps;

@@ -10,7 +10,7 @@ class ParallelCoordinates extends Component {
   constructor(props) {
     super(props);
     this.lastHoveredLine = null;
-    this.changed = [];
+    this.changed = []; 
   }
 
   componentDidMount() {
@@ -210,7 +210,7 @@ class ParallelCoordinates extends Component {
     this.checkPropsSanity();
     this.refs.parcoords.style.width = this.props.width;
     this.refs.parcoords.style.height = this.props.height;
-
+     
     this.pc
       .width(this.props.width)
       .height(this.props.height)
@@ -223,11 +223,14 @@ class ParallelCoordinates extends Component {
       .createAxes()
       .reorderable()
       .brushMode('None')
-      .brushMode('1D-axes');
+      .brushMode('1D-axes')
+      .smoothness(this.props.smoothness)
+      .bundlingStrength(this.props.bundlingStrength) 
 
     this.resetActiveData();
     this.pc.render();
     this.setHighlights();
+    this.setBundleDimension();
   }
 
   resetActiveData() {
@@ -238,6 +241,13 @@ class ParallelCoordinates extends Component {
       this.resetBrush();
     }
   }
+
+  setBundleDimension() {
+    if (this.props.bundleDimension) {
+      this.pc.bundleDimension(this.props.bundleDimension)
+    }  
+  }
+
 
   setHighlights() {
     if (this.props.highlights && this.props.highlights.length) {
@@ -267,7 +277,7 @@ ParallelCoordinates.defaultProps = {
   onBrushEnd: noop,
   data: [],
   width: 800,
-  height: 300
+  height: 300 
 };
 
 ParallelCoordinates.propTypes = {
@@ -278,7 +288,7 @@ ParallelCoordinates.propTypes = {
   onBrush: PropTypes.func,
   onBrushEnd: PropTypes.func,
   onLineHover: PropTypes.func,
-  onLinesHover: PropTypes.func
+  onLinesHover: PropTypes.func, 
 };
 
 export default ParallelCoordinates;

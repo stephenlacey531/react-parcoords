@@ -22,12 +22,11 @@
   "module": "lib-es6/index.js",
   "scripts": {
     "compile": "babel src --out-dir lib --ignore __tests__ --quiet",
-    "compile-es6": "BABEL_ENV=es6 babel src --out-dir lib-es6 --ignore __tests__ --quiet",
     "start": "webpack-dev-server --inline",
     "test": "run-s eslint",
     "eslint": "eslint src webpack.config.js",
     "eslint-fix": "eslint --fix src",
-    "prepare": "run-p compile compile-es6",
+    "prepare": "run-p compile",
     "testonly": "jest"
   },
   "jest": {
@@ -65,6 +64,7 @@
   "dependencies": {
     "d3": "^3.0.0",
     "lodash": "^4.17.4",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "sylvester-es6": "0.0.2"
   }
 }
