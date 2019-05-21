@@ -50,9 +50,14 @@ class ParallelCoordinates extends Component {
   componentDidUpdate() {
     // update w/ new data http://blog.siftscience.com/blog/2015/4/6/d-threeact-how-sift-science-made-d3-react-besties
     // keep brush
-    if (this.changed.length === 1 && this.changed[0] === 'highlights') {
+ 
+    if (this.changed.length === 1 && this.changed[0] === 'highlights') { 
       this.setHighlights();
-    } else {
+    }
+    else if (this.changed.length === 1 && this.changed[0] === 'color') {  
+      this.setColor();
+    }
+    else {
       this.updatePC();
     }
   }
@@ -215,8 +220,7 @@ class ParallelCoordinates extends Component {
       .width(this.props.width)
       .height(this.props.height)
       .data(this.props.data)
-      .dimensions(dimensions)
-      .color(this.props.color)
+      .dimensions(dimensions) 
       .mode('queue')
       .composite('darken')
       .shadows()
@@ -227,10 +231,12 @@ class ParallelCoordinates extends Component {
       .smoothness(this.props.smoothness)
       .bundlingStrength(this.props.bundlingStrength) 
 
-    this.resetActiveData();
-    this.pc.render();
+    this.resetActiveData();    
     this.setHighlights();
     this.setBundleDimension();
+    this.setColor();
+
+    this.pc.render();
   }
 
   resetActiveData() {
@@ -248,6 +254,11 @@ class ParallelCoordinates extends Component {
     }  
   }
 
+  setColor() {
+    if (this.props.color) {
+      this.pc.color(this.props.color).render();
+    }
+  }
 
   setHighlights() {
     if (this.props.highlights && this.props.highlights.length) {
