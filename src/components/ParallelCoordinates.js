@@ -264,7 +264,8 @@ class ParallelCoordinates extends Component {
 
   setWidth() {
     if (this.props.width) {
-      this.pc.width(this.props.width);
+      this.pc.width(this.props.width).render();
+      this.pc.height(this.props.height).render();
     }
   }
 
