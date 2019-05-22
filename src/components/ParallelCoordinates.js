@@ -55,7 +55,7 @@ class ParallelCoordinates extends Component {
       this.setHighlights();
     }
     else if (this.changed.length === 1 && this.changed[0] === 'width') {  
-      this.setColor();
+      this.setWidth();
     }
     else if (this.changed.length === 1 && this.changed[0] === 'color') {  
       this.setColor();
@@ -237,8 +237,7 @@ class ParallelCoordinates extends Component {
     this.setHighlights();
     this.setBundleDimension();
     this.setColor();
-    this.setWidth();
-    
+
     this.pc.render();
   }
 
