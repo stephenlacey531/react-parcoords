@@ -57,6 +57,9 @@ class ParallelCoordinates extends Component {
     else if (this.changed.length === 1 && this.changed[0] === 'color') {  
       this.setColor();
     }
+    else if (this.changed.length === 1 && this.changed[0] === 'width') {   
+      this.setWidth();
+    }
     else {
       this.updatePC();
     }
@@ -215,8 +218,8 @@ class ParallelCoordinates extends Component {
     this.checkPropsSanity();
     this.refs.parcoords.style.width = this.props.width;
     this.refs.parcoords.style.height = this.props.height;
-     
-    this.pc
+      
+    this.pc 
       .width(this.props.width)
       .height(this.props.height)
       .data(this.props.data)
@@ -234,7 +237,7 @@ class ParallelCoordinates extends Component {
     this.resetActiveData();    
     this.setHighlights();
     this.setBundleDimension();
-    this.setColor();
+    this.setColor(); 
 
     this.pc.render();
   }
@@ -260,6 +263,16 @@ class ParallelCoordinates extends Component {
     }
   }
 
+  setWidth() {
+    if (this.props.width) {   
+      this.pc 
+      .brushExtents(this.lastExtents)
+      .width(this.props.width)    
+      .brushMode('None') 
+      .brushMode('1D-axes')   
+    }
+  }
+  
   setHighlights() {
     if (this.props.highlights && this.props.highlights.length) {
       this.pc.highlight(this.props.highlights);

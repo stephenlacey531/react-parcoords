@@ -28,7 +28,7 @@ class App extends Component {
     switchSize() {
         this.setState({
             width: this.state.width === 1200 ? 600 : 1200,
-            height: this.state.height === 300 ? 600 : 300
+            //height: this.state.height === 300 ? 600 : 300
         });
     }
 
