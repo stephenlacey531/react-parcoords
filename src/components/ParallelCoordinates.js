@@ -259,17 +259,37 @@ class ParallelCoordinates extends Component {
 
   setColor() {
     if (this.props.color) {
-      this.pc.color(this.props.color).render();
+      if (this.lastExtents) {
+        this.pc 
+        .brushExtents(this.lastExtents)
+        .width(this.props.width)    
+        .brushMode('None') 
+        .brushMode('1D-axes')
+        .color(this.props.color)
+      }
+      else
+      {
+        this.pc.color(this.props.color).render();
+      }
     }
   }
 
   setWidth() {
     if (this.props.width) {   
-      this.pc 
-      .brushExtents(this.lastExtents)
-      .width(this.props.width)    
-      .brushMode('None') 
-      .brushMode('1D-axes')   
+      if (this.lastExtents) {
+        this.pc 
+        .brushExtents(this.lastExtents)
+        .width(this.props.width)    
+        .brushMode('None') 
+        .brushMode('1D-axes');
+      }
+      else {
+        this.pc  
+        .width(this.props.width)     
+        .brushMode('None') 
+        .brushMode('1D-axes')
+        .render();
+      } 
     }
   }
   
