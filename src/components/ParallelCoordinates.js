@@ -56,10 +56,7 @@ class ParallelCoordinates extends Component {
     }
     else if (this.changed.length === 1 && this.changed[0] === 'color') {  
       this.setColor();
-    }
-    else if (this.changed.length === 1 && this.changed[0] === 'width') {   
-      this.setWidth();
-    }
+    } 
     else {
       this.updatePC();
     }
@@ -273,25 +270,7 @@ class ParallelCoordinates extends Component {
       }
     }
   }
-
-  setWidth() {
-    if (this.props.width) {   
-      if (this.lastExtents) {
-        this.pc 
-        .brushExtents(this.lastExtents)
-        .width(this.props.width)    
-        .brushMode('None') 
-        .brushMode('1D-axes');
-      }
-      else {
-        this.pc  
-        .width(this.props.width)     
-        .brushMode('None') 
-        .brushMode('1D-axes')
-        .render();
-      } 
-    }
-  }
+ 
   
   setHighlights() {
     if (this.props.highlights && this.props.highlights.length) {
