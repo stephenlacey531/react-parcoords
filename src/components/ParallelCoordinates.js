@@ -255,19 +255,8 @@ class ParallelCoordinates extends Component {
   }
 
   setColor() {
-    if (this.props.color) {
-      if (this.lastExtents) {
-        this.pc 
-        .brushExtents(this.lastExtents)
-        .width(this.props.width)    
-        .brushMode('None') 
-        .brushMode('1D-axes')
-        .color(this.props.color)
-      }
-      else
-      {
-        this.pc.color(this.props.color).render();
-      }
+    if (this.props.color) { 
+        this.pc.color(this.props.color).render(); 
     }
   }
  
